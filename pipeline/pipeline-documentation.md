@@ -1,20 +1,12 @@
-# Fabric Sales Ingestion Pipeline
+# Microsoft Fabric Sales Analytics Pipeline
 
-## Overview
-
-The `pl_ingest_sales` pipeline orchestrates the ingestion and transformation of sales data from the source CSV into the analytical warehouse.
-
----
-
-## Pipeline
-
-![Fabric Pipeline](../screenshots/pipeline.png)
-
-### Pipeline Name
+## Pipeline Name
 
 `pl_ingest_sales`
 
----
+## Overview
+
+The Microsoft Fabric Data Factory pipeline orchestrates the movement and transformation of sales data from the source CSV through the Lakehouse and into the Fabric Warehouse.
 
 ## Pipeline Flow
 
@@ -34,58 +26,37 @@ BuildGoldLayer
 TransformSilverToWarehouse
 ```
 
----
+## Pipeline Activities
 
-# Pipeline Activities
+### 1. CopyRawSalesCSV
 
-## 1. CopyRawSalesCSV
+Ingests the source `sales_data.csv` file into the Fabric environment.
 
-Copies the source sales CSV into the Microsoft Fabric environment.
+### 2. CopyDataToDelta
 
-This is the initial data ingestion step.
+Stores the ingested sales data in Delta format in the Lakehouse.
 
----
+### 3. TransformBronzeToSilver
 
-## 2. CopyDataToDelta
+Uses PySpark to clean and standardize the Bronze data.
 
-Loads the ingested data into Delta format in the Fabric Lakehouse.
+Typical processing includes:
 
-Delta Lake provides reliable and transactional storage for the data engineering workflow.
+- Data type standardization
+- Date transformation
+- Data validation
+- Duplicate handling
+- Column transformations
 
----
+### 4. BuildGoldLayer
 
-## 3. TransformBronzeToSilver
+Creates curated, business-ready data for downstream analytical use.
 
-A PySpark notebook processes the Bronze data and creates the Silver layer.
+### 5. TransformSilverToWarehouse
 
-### Transformations
+Loads the curated data into the Fabric Warehouse and prepares the dimensional model.
 
-* Data cleaning
-* Data type standardization
-* Data validation
-* Column transformations
-* Duplicate handling
-* Date transformations
-
----
-
-## 4. BuildGoldLayer
-
-Creates curated and business-ready data in the Gold layer.
-
-The Gold layer is prepared for downstream analytical consumption.
-
----
-
-## 5. TransformSilverToWarehouse
-
-Loads/transforms the curated data into the Fabric Warehouse.
-
-The Warehouse contains the dimensional model used by the Power BI Semantic Model.
-
----
-
-# Pipeline Architecture
+## Architecture
 
 ```text
 Source CSV
@@ -94,48 +65,22 @@ Source CSV
 Fabric Data Factory
     │
     ▼
-Lakehouse Bronze
+Lakehouse
     │
-    ▼
-PySpark Transformation
-    │
-    ▼
-Lakehouse Silver
-    │
-    ▼
-PySpark Transformation
-    │
-    ▼
-Lakehouse Gold
+    ├── Bronze
+    ├── Silver
+    └── Gold
     │
     ▼
 Fabric Warehouse
     │
-    ▼
-Power BI
+    ├── fact_sales
+    ├── dim_customer
+    ├── dim_product
+    ├── dim_region
+    └── dim_date
 ```
 
----
+## Outcome
 
-# Technologies
-
-* Microsoft Fabric Data Factory
-* Fabric Lakehouse
-* Delta Lake
-* PySpark
-* Fabric Warehouse
-* Power BI
-
----
-
-# Purpose
-
-The pipeline provides a repeatable workflow for moving data from the source system through the data engineering layers and into the analytical warehouse.
-
-This separates:
-
-* Data ingestion
-* Data transformation
-* Data curation
-* Analytical storage
-* Reporting
+The pipeline provides an orchestrated path from raw source data to curated analytical data that can be consumed by the Fabric Semantic Model and Power BI Desktop.
