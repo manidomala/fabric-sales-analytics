@@ -2,231 +2,125 @@
 
 ## Overview
 
-The Power BI report is built on top of the curated data stored in the Fabric Warehouse.
+The analytical model for this project is created in **Microsoft Fabric** using a Fabric Semantic Model.
 
-The Power BI Semantic Model follows a **star schema** consisting of one fact table and four dimension tables.
+The report itself is developed in **Power BI Desktop** by connecting to the Fabric Semantic Model.
 
----
-
-# Semantic Model
-
-## Fact Table
-
-* `fact_sales`
-
-## Dimension Tables
-
-* `dim_customer`
-* `dim_product`
-* `dim_region`
-* `dim_date`
-
----
-
-# Star Schema
-
-![Star Schema](../screenshots/star-schema.png)
+## Reporting Architecture
 
 ```text
-                    dim_customer
-                         │
-                         │
-                         ▼
-dim_product ─────── fact_sales ─────── dim_region
-                         ▲
-                         │
-                         │
-                     dim_date
+Fabric Warehouse
+       │
+       ▼
+Fabric Semantic Model
+       │
+       │ Live Connection
+       ▼
+Power BI Desktop
+       │
+       ▼
+Sales Analytics Report
+       │
+       ▼
+Microsoft Fabric
+       │
+       ▼
+Sales Report App
 ```
 
----
+## Semantic Model
 
-# Relationships
+The semantic model follows a star schema.
+
+### Fact Table
+
+- `fact_sales`
+
+### Dimension Tables
+
+- `dim_customer`
+- `dim_product`
+- `dim_region`
+- `dim_date`
+
+### Relationships
 
 ```text
-dim_customer  1 ───── * fact_sales
+dim_customer  1 ───────── * fact_sales
 
-dim_product   1 ───── * fact_sales
+dim_product   1 ───────── * fact_sales
 
-dim_region    1 ───── * fact_sales
+dim_region    1 ───────── * fact_sales
 
-dim_date      1 ───── * fact_sales
+dim_date      1 ───────── * fact_sales
 ```
 
-The dimension tables are on the `1` side and `fact_sales` is on the `*` side.
+## DAX Measures
 
----
-
-# DAX Measures
-
-## Total Customers
+### Total Customers
 
 ```DAX
 Total Customers =
 DISTINCTCOUNT(fact_sales[customer_key])
 ```
 
-Counts the unique customers.
-
----
-
-## Total Orders
+### Total Orders
 
 ```DAX
 Total Orders =
 DISTINCTCOUNT(fact_sales[order_id])
 ```
 
-Counts the unique orders.
-
----
-
-## Total Quantity
+### Total Quantity
 
 ```DAX
 Total Quantity =
 SUM(fact_sales[quantity])
 ```
 
-Calculates total quantity sold.
-
----
-
-## Total Revenue
+### Total Revenue
 
 ```DAX
 Total Revenue =
 SUM(fact_sales[revenue])
 ```
 
-Calculates total revenue.
-
----
-
-## Total Revenue USD
+### Total Revenue USD
 
 ```DAX
 Total Revenue USD =
 SUM(fact_sales[revenue_usd])
 ```
 
-Calculates total revenue converted to USD.
+## Additional Measures
 
----
+- Avg Order Value
+- Avg Quantity per Order
+- Avg Revenue per Order
+- Customer Rank
 
-# Additional Measures
+## Report Development
 
-The report also contains:
+The report is developed in Power BI Desktop using the Fabric Semantic Model.
 
-* Avg Order Value
-* Avg Quantity per Order
-* Avg Revenue per Order
-* Customer Rank
+The report includes:
 
----
+- KPI cards
+- Date slicers
+- Month slicers
+- Quarter slicers
+- Year slicers
+- Monthly Revenue & Orders Trend
+- Revenue by Region
+- Orders by Region
+- Revenue by Product Category
+- Quantity by Product Category
+- Top 10 Customers by Revenue
 
-# Dashboard
+## Publishing
 
-![Power BI Dashboard](../screenshots/dashboard.png)
+After development in Power BI Desktop, the completed report is published to Microsoft Fabric.
 
-The Power BI report provides an interactive Sales Analytics Overview.
+The published report is then made available through the **Sales Report** Microsoft Fabric App.
 
----
-
-# KPI Cards
-
-The dashboard contains:
-
-* Total Revenue
-* Total Revenue USD
-* Total Orders
-* Total Quantity
-* Avg Revenue per Order
-* Avg Quantity per Order
-
----
-
-# Slicers
-
-The report contains slicers for:
-
-* Date
-* Month
-* Quarter
-* Year
-
-These slicers allow users to perform time-based analysis.
-
----
-
-# Visualizations
-
-## Monthly Revenue & Orders
-
-A combination chart showing revenue and order trends over time.
-
----
-
-## Orders by Product Category
-
-Shows the distribution of orders across product categories.
-
----
-
-## Revenue by Region
-
-Compares revenue across different regions.
-
----
-
-## Orders by Region
-
-Compares order volume across different regions.
-
----
-
-## Revenue by Product Category
-
-Shows revenue contribution by product category.
-
----
-
-## Quantity by Product Category
-
-Shows quantity distribution across product categories.
-
----
-
-## Top 10 Customers by Revenue
-
-Ranks customers based on revenue contribution.
-
----
-
-# Business Questions Answered
-
-The dashboard helps answer:
-
-* What is the total revenue?
-* How many orders were placed?
-* How many customers made purchases?
-* Which product categories generate the most revenue?
-* Which regions generate the most revenue?
-* How do revenue and orders change over time?
-* Who are the top customers by revenue?
-* What is the average revenue per order?
-* What is the average quantity per order?
-
----
-
-# Modeling Principles
-
-The semantic model follows these principles:
-
-* Star schema
-* Fact and dimension separation
-* One-to-many relationships
-* Surrogate keys
-* Centralized DAX measures
-* Dedicated date dimension
-* Business-friendly analytical model
+> Access to the Fabric App requires appropriate Microsoft Fabric / Power BI permissions.
