@@ -592,7 +592,7 @@ The app provides an interactive view of the Sales Analytics dashboard and allows
 
 ### 🔗 Open Sales Report App
 
-[📊 **Open Sales Report App**](YOUR_FABRIC_APP_URL)
+[📊 **Open Sales Report App**](https://app.fabric.microsoft.com/Redirect?action=OpenApp&appId=cc4ca843-6ece-4e50-918a-eba28323fe81&ctid=3c71cbab-b5ed-4f3b-ac0d-95509d6c0e93&experience=fabric-developer)
 
 > Replace `YOUR_FABRIC_APP_URL` with the shareable URL of your Microsoft Fabric Sales Report App.
 
@@ -677,11 +677,11 @@ All project screenshots are available in the repository.
 
 ### Individual Screenshots
 
-- [Fabric Pipeline](screenshots/pipeline.png)
-- [Fabric Lakehouse](screenshots/lakehouse.png)
-- [Fabric Warehouse](screenshots/warehouse.png)
-- [Power BI Star Schema](screenshots/star-schema.png)
-- [Power BI Dashboard](screenshots/dashboard.png)
+- [Fabric Pipeline](Screenshots/pipeline.png)
+- [Fabric Lakehouse](Screenshots/lakehouse.png)
+- [Fabric Warehouse](Screenshots/warehouse.png)
+- [Power BI Star Schema](Screenshots/star-schema.png)
+- [Power BI Dashboard](Screenshots/dashboard.png)
 
 ---
 
