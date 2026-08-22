@@ -1,29 +1,30 @@
 # Microsoft Fabric Sales Analytics
 
-An end-to-end **sales data engineering and analytics project** built using **Microsoft Fabric**, implementing Medallion Architecture with PySpark and Delta Lake, loading curated data into a Fabric Warehouse, and delivering business insights through a Power BI Semantic Model and interactive dashboard.
+An end-to-end **sales data engineering and analytics project** built using **Microsoft Fabric**, implementing Medallion Architecture with PySpark and Delta Lake, loading curated data into a Fabric Warehouse, and delivering business insights through a Power BI Semantic Model, interactive dashboard, and Microsoft Fabric Sales Report App.
 
 ---
 
 ## 📌 Project Overview
 
-This project demonstrates a complete modern data analytics workflow, starting from raw sales CSV data and ending with an interactive Power BI dashboard.
+This project demonstrates a complete modern data analytics workflow, starting from raw sales CSV data and ending with an interactive Power BI dashboard published through a Microsoft Fabric App.
 
 The solution uses Microsoft Fabric to:
 
-* Ingest raw sales data
-* Store data in a Fabric Lakehouse
-* Implement Bronze, Silver, and Gold layers
-* Transform data using PySpark
-* Store processed data using Delta Lake
-* Load curated data into a Fabric Warehouse
-* Implement a dimensional star schema
-* Build a Power BI Semantic Model
-* Create DAX measures
-* Develop an interactive Sales Analytics dashboard
+- Ingest raw sales data
+- Store data in a Fabric Lakehouse
+- Implement Bronze, Silver, and Gold layers
+- Transform data using PySpark
+- Store processed data using Delta Lake
+- Load curated data into a Fabric Warehouse
+- Implement a dimensional star schema
+- Build a Power BI Semantic Model
+- Create DAX measures
+- Develop an interactive Sales Analytics dashboard
+- Publish the Power BI report as a Microsoft Fabric App
 
 ---
 
-# 🔄 End-to-End Architecture
+## 🔄 End-to-End Architecture
 
 ```text
                        Sales CSV
@@ -31,7 +32,7 @@ The solution uses Microsoft Fabric to:
                            ▼
                 ┌────────────────────┐
                 │  Fabric Data       │
-                │  Factory Pipeline   │
+                │  Factory Pipeline  │
                 └─────────┬──────────┘
                           │
                           ▼
@@ -59,33 +60,40 @@ The solution uses Microsoft Fabric to:
                           │
                           ▼
                 ┌────────────────────┐
-                │ Power BI Dashboard │
+                │ Power BI Report    │
                 │ Sales Analytics    │
+                └─────────┬──────────┘
+                          │
+                          ▼
+                ┌────────────────────┐
+                │   Sales Report     │
+                │   Fabric App       │
                 └────────────────────┘
 ```
 
 ---
 
-# 🛠️ Technologies Used
+## 🛠️ Technologies Used
 
-* Microsoft Fabric
-* OneLake
-* Fabric Data Factory
-* Fabric Lakehouse
-* Delta Lake
-* PySpark
-* Spark SQL
-* Fabric Warehouse
-* SQL
-* Power BI
-* Power BI Semantic Model
-* DAX
-* Medallion Architecture
-* Star Schema
+- Microsoft Fabric
+- OneLake
+- Fabric Data Factory
+- Fabric Lakehouse
+- Delta Lake
+- PySpark
+- Spark SQL
+- Fabric Warehouse
+- SQL
+- Power BI
+- Power BI Semantic Model
+- DAX
+- Medallion Architecture
+- Star Schema
+- Microsoft Fabric App
 
 ---
 
-# 📂 Source Dataset
+## 📂 Source Dataset
 
 The project starts with a sales transaction CSV dataset.
 
@@ -93,48 +101,46 @@ The project starts with a sales transaction CSV dataset.
 
 The dataset contains:
 
-* **1,525 records**
-* **8 columns**
+- **1,525 records**
+- **8 columns**
 
 ### Dataset Schema
 
-| Column            | Description                      |
-| ----------------- | -------------------------------- |
-| `OrderID`         | Unique order identifier          |
-| `OrderDate`       | Date of the order                |
-| `CustomerName`    | Customer name                    |
-| `Region`          | Sales region                     |
-| `ProductCategory` | Product category                 |
-| `Revenue`         | Revenue generated from the order |
-| `Quantity`        | Quantity sold                    |
-| `Status`          | Order status                     |
+| Column | Description |
+|---|---|
+| `OrderID` | Unique order identifier |
+| `OrderDate` | Date of the order |
+| `CustomerName` | Customer name |
+| `Region` | Sales region |
+| `ProductCategory` | Product category |
+| `Revenue` | Revenue generated from the order |
+| `Quantity` | Quantity sold |
+| `Status` | Order status |
 
 ### Product Categories
 
-* Electronics
-* Furniture
-* Office Supplies
+- Electronics
+- Furniture
+- Office Supplies
 
 ### Regions
 
-* North
-* South
-* East
-* West
+- North
+- South
+- East
+- West
+
+> The raw CSV file is not included in this public repository.
 
 ---
 
-# 🏭 Data Engineering
+## 🏭 Data Engineering
 
-## Microsoft Fabric Pipeline
+### Microsoft Fabric Pipeline
 
 The data ingestion and transformation process is orchestrated using a Microsoft Fabric Data Factory pipeline.
 
-![Fabric Pipeline](screenshots/pipeline.png)
-
-### Pipeline Name
-
-`pl_ingest_sales`
+**Pipeline Name:** `pl_ingest_sales`
 
 ### Pipeline Flow
 
@@ -164,15 +170,13 @@ The pipeline performs the following operations:
 
 Detailed pipeline documentation:
 
-[`pipeline/pipeline-documentation.md`](pipeline/pipeline-documentation.md)
+[pipeline/pipeline-documentation.md](pipeline/pipeline-documentation.md)
 
 ---
 
-# 🏞️ Lakehouse
+## 🏞️ Lakehouse
 
 The project uses a Microsoft Fabric Lakehouse as the data engineering layer.
-
-![Fabric Lakehouse](screenshots/lakehouse.png)
 
 The Lakehouse follows the **Medallion Architecture**.
 
@@ -202,37 +206,33 @@ Raw Sales Data
 └───────────────┘
 ```
 
-## 🥉 Bronze Layer
+### 🥉 Bronze Layer
 
 The Bronze layer stores the raw ingested data.
 
-### Purpose
+**Purpose:**
 
-* Preserve source data
-* Maintain the original structure
-* Provide a reliable starting point for transformations
-* Support reprocessing
+- Preserve source data
+- Maintain the original structure
+- Provide a reliable starting point for transformations
+- Support reprocessing
 
----
-
-## 🥈 Silver Layer
+### 🥈 Silver Layer
 
 The Silver layer contains cleaned and transformed data.
 
 Typical transformations include:
 
-* Data cleaning
-* Data type standardization
-* Date transformation
-* Data validation
-* Duplicate handling
-* Column transformations
+- Data cleaning
+- Data type standardization
+- Date transformation
+- Data validation
+- Duplicate handling
+- Column transformations
 
 PySpark is used for the transformation process.
 
----
-
-## 🥇 Gold Layer
+### 🥇 Gold Layer
 
 The Gold layer contains curated and business-ready data.
 
@@ -240,7 +240,7 @@ The Gold layer prepares the data for downstream analytical consumption and wareh
 
 ---
 
-# ⚡ PySpark
+## ⚡ PySpark
 
 PySpark is used for transformations between the Lakehouse layers.
 
@@ -272,11 +272,9 @@ PySpark integrates with Microsoft Fabric, Apache Spark, and Delta Lake to suppor
 
 ---
 
-# 🏢 Fabric Warehouse
+## 🏢 Fabric Warehouse
 
 The curated data is loaded into a Microsoft Fabric Warehouse for analytical querying.
-
-![Fabric Warehouse](screenshots/warehouse.png)
 
 The Warehouse follows a dimensional modeling approach.
 
@@ -294,11 +292,9 @@ analytics
 
 ---
 
-# ⭐ Star Schema
+## ⭐ Star Schema
 
 The Power BI Semantic Model uses a star schema.
-
-![Star Schema](screenshots/star-schema.png)
 
 ```text
                     dim_customer
@@ -316,77 +312,71 @@ The `fact_sales` table contains measurable business events, while dimension tabl
 
 ---
 
-# 📊 Fact Table
+## 📊 Fact Table
 
-## `fact_sales`
+### `fact_sales`
 
 The fact table stores sales transaction data.
 
-| Column           | Description                   |
-| ---------------- | ----------------------------- |
-| `order_id`       | Unique order identifier       |
-| `order_date_key` | Foreign key to `dim_date`     |
-| `customer_key`   | Foreign key to `dim_customer` |
-| `product_key`    | Foreign key to `dim_product`  |
-| `region_key`     | Foreign key to `dim_region`   |
-| `quantity`       | Quantity sold                 |
-| `revenue`        | Revenue in local currency     |
-| `revenue_usd`    | Revenue converted to USD      |
+| Column | Description |
+|---|---|
+| `order_id` | Unique order identifier |
+| `order_date_key` | Foreign key to `dim_date` |
+| `customer_key` | Foreign key to `dim_customer` |
+| `product_key` | Foreign key to `dim_product` |
+| `region_key` | Foreign key to `dim_region` |
+| `quantity` | Quantity sold |
+| `revenue` | Revenue in local currency |
+| `revenue_usd` | Revenue converted to USD |
 
 ---
 
-# 📐 Dimension Tables
+## 📐 Dimension Tables
 
-## `dim_customer`
+### `dim_customer`
 
 Contains customer information.
 
-| Column          | Description            |
-| --------------- | ---------------------- |
-| `customer_key`  | Surrogate customer key |
-| `customer_name` | Customer name          |
-| `region`        | Customer region        |
+| Column | Description |
+|---|---|
+| `customer_key` | Surrogate customer key |
+| `customer_name` | Customer name |
+| `region` | Customer region |
 
----
-
-## `dim_product`
+### `dim_product`
 
 Contains product information.
 
-| Column             | Description           |
-| ------------------ | --------------------- |
-| `product_key`      | Surrogate product key |
-| `product_category` | Product category      |
+| Column | Description |
+|---|---|
+| `product_key` | Surrogate product key |
+| `product_category` | Product category |
 
----
-
-## `dim_region`
+### `dim_region`
 
 Contains region information.
 
-| Column       | Description          |
-| ------------ | -------------------- |
+| Column | Description |
+|---|---|
 | `region_key` | Surrogate region key |
-| `region`     | Region name          |
+| `region` | Region name |
 
----
-
-## `dim_date`
+### `dim_date`
 
 Contains calendar attributes.
 
-| Column           | Description        |
-| ---------------- | ------------------ |
+| Column | Description |
+|---|---|
 | `order_date_key` | Date surrogate key |
-| `full_date`      | Full date          |
-| `year`           | Year               |
-| `quarter`        | Quarter            |
-| `month_number`   | Month number       |
-| `month_name`     | Month name         |
+| `full_date` | Full date |
+| `year` | Year |
+| `quarter` | Quarter |
+| `month_number` | Month number |
+| `month_name` | Month name |
 
 ---
 
-# 🔗 Relationships
+## 🔗 Relationships
 
 The semantic model uses one-to-many relationships.
 
@@ -404,159 +394,157 @@ The dimension tables provide filtering context for the fact table.
 
 ---
 
-# 📈 Power BI
+## 📈 Power BI
 
 The Power BI report is built using the Fabric Semantic Model.
 
-![Power BI Dashboard](screenshots/dashboard.png)
-
 The model contains:
 
-* Fact table
-* Dimension tables
-* Relationships
-* DAX measures
-* Time-based attributes
-* Business KPIs
+- Fact table
+- Dimension tables
+- Relationships
+- DAX measures
+- Time-based attributes
+- Business KPIs
 
 Detailed Power BI documentation:
 
-[`powerbi/powerbi-documentation.md`](powerbi/powerbi-documentation.md)
+[powerbi/powerbi-documentation.md](powerbi/powerbi-documentation.md)
 
 ---
 
-# 🧮 DAX Measures
+## 🧮 DAX Measures
 
-## Total Customers
+### Total Customers
 
 ```DAX
 Total Customers =
 DISTINCTCOUNT(fact_sales[customer_key])
 ```
 
-## Total Orders
+### Total Orders
 
 ```DAX
 Total Orders =
 DISTINCTCOUNT(fact_sales[order_id])
 ```
 
-## Total Quantity
+### Total Quantity
 
 ```DAX
 Total Quantity =
 SUM(fact_sales[quantity])
 ```
 
-## Total Revenue
+### Total Revenue
 
 ```DAX
 Total Revenue =
 SUM(fact_sales[revenue])
 ```
 
-## Total Revenue USD
+### Total Revenue USD
 
 ```DAX
 Total Revenue USD =
 SUM(fact_sales[revenue_usd])
 ```
 
-## Additional Measures
+### Additional Measures
 
-* Avg Order Value
-* Avg Quantity per Order
-* Avg Revenue per Order
-* Customer Rank
+- Avg Order Value
+- Avg Quantity per Order
+- Avg Revenue per Order
+- Customer Rank
 
 ---
 
-# 📊 Sales Analytics Dashboard
+## 📊 Sales Analytics Dashboard
 
 The final Power BI report provides an interactive overview of sales performance.
 
 ### KPI Cards
 
-* Total Revenue
-* Total Revenue (USD)
-* Total Orders
-* Total Quantity
-* Average Revenue per Order
-* Average Quantity per Order
+- Total Revenue
+- Total Revenue (USD)
+- Total Orders
+- Total Quantity
+- Average Revenue per Order
+- Average Quantity per Order
 
 ### Slicers
 
-* Date
-* Month
-* Quarter
-* Year
+- Date
+- Month
+- Quarter
+- Year
 
 ### Visualizations
 
-* Monthly Revenue & Orders Trend
-* Orders by Product Category
-* Revenue by Region
-* Orders by Region
-* Revenue by Product Category
-* Quantity by Product Category
-* Top 10 Customers by Revenue
+- Monthly Revenue & Orders Trend
+- Orders by Product Category
+- Revenue by Region
+- Orders by Region
+- Revenue by Product Category
+- Quantity by Product Category
+- Top 10 Customers by Revenue
 
 ---
 
-# 📌 Dashboard KPIs
+## 📌 Dashboard KPIs
 
 The current unfiltered dashboard displays approximately:
 
-| KPI                    |    Value |
-| ---------------------- | -------: |
-| Total Revenue          |  ₹13.64M |
-| Total Revenue (USD)    | $164.38K |
-| Total Orders           |    1,250 |
-| Total Quantity         |      10K |
-| Avg Revenue per Order  |  ₹10.91K |
-| Avg Quantity per Order |        8 |
+| KPI | Value |
+|---|---:|
+| Total Revenue | ₹13.64M |
+| Total Revenue (USD) | $164.38K |
+| Total Orders | 1,250 |
+| Total Quantity | 10K |
+| Avg Revenue per Order | ₹10.91K |
+| Avg Quantity per Order | 8 |
 
 ---
 
-# 🔍 Business Analysis
+## 🔍 Business Analysis
 
 The dashboard enables analysis of:
 
 ### Revenue Performance
 
-* Overall revenue
-* Monthly revenue trends
-* Revenue by region
-* Revenue by product category
+- Overall revenue
+- Monthly revenue trends
+- Revenue by region
+- Revenue by product category
 
 ### Order Performance
 
-* Total orders
-* Monthly order trends
-* Orders by region
-* Orders by product category
+- Total orders
+- Monthly order trends
+- Orders by region
+- Orders by product category
 
 ### Product Performance
 
-* Revenue by product category
-* Orders by product category
-* Quantity by product category
+- Revenue by product category
+- Orders by product category
+- Quantity by product category
 
 ### Customer Performance
 
-* Total customers
-* Top customers by revenue
-* Customer ranking
+- Total customers
+- Top customers by revenue
+- Customer ranking
 
 ### Time Analysis
 
-* Monthly analysis
-* Quarterly analysis
-* Yearly analysis
+- Monthly analysis
+- Quarterly analysis
+- Yearly analysis
 
 ---
 
-# 🧠 Data Modeling Approach
+## 🧠 Data Modeling Approach
 
 The project follows dimensional modeling principles.
 
@@ -568,28 +556,57 @@ Stores measurable transactional data.
 
 ### Dimensions
 
-* `dim_customer`
-* `dim_product`
-* `dim_region`
-* `dim_date`
+- `dim_customer`
+- `dim_product`
+- `dim_region`
+- `dim_date`
 
 The star schema provides:
 
-* Clear separation between facts and dimensions
-* Simple filtering
-* Efficient aggregation
-* Better analytical usability
-* Scalable Power BI modeling
+- Clear separation between facts and dimensions
+- Simple filtering
+- Efficient aggregation
+- Better analytical usability
+- Scalable Power BI modeling
 
 ---
 
-# 🚀 Complete Project Flow
+## 📱 Sales Report App
+
+The Power BI Sales Analytics report is published as a **Microsoft Fabric App** named **Sales Report**.
+
+The app provides an interactive view of the Sales Analytics dashboard and allows users to analyze sales performance through the published report.
+
+### App Features
+
+- Interactive sales dashboard
+- Revenue analysis
+- Order analysis
+- Product category analysis
+- Regional analysis
+- Customer analysis
+- Monthly analysis
+- Quarterly analysis
+- Yearly analysis
+- Interactive filters and slicers
+
+### 🔗 Open Sales Report App
+
+[📊 **Open Sales Report App**](YOUR_FABRIC_APP_URL)
+
+> Replace `YOUR_FABRIC_APP_URL` with the shareable URL of your Microsoft Fabric Sales Report App.
+
+> Access to the app requires appropriate Microsoft Fabric / Power BI permissions.
+
+---
+
+## 🚀 Complete Project Flow
 
 ```text
                     SOURCE
                       │
                       ▼
-                 Sales CSV
+                  Sales CSV
                       │
                       ▼
             Fabric Data Factory
@@ -616,12 +633,15 @@ The star schema provides:
                     DAX
                       │
                       ▼
-             Power BI Dashboard
+              Power BI Report
+                      │
+                      ▼
+               Sales Report App
 ```
 
 ---
 
-# 📁 Repository Structure
+## 📁 Repository Structure
 
 ```text
 fabric-sales-analytics/
@@ -645,56 +665,77 @@ fabric-sales-analytics/
     └── README.md
 ```
 
-# 📚 Key Learning Outcomes
+---
+
+## 📸 Project Screenshots
+
+All project screenshots are available in the repository.
+
+### View All Screenshots
+
+[📁 **Open Screenshots Folder**](screenshots/)
+
+### Individual Screenshots
+
+- [Fabric Pipeline](screenshots/pipeline.png)
+- [Fabric Lakehouse](screenshots/lakehouse.png)
+- [Fabric Warehouse](screenshots/warehouse.png)
+- [Power BI Star Schema](screenshots/star-schema.png)
+- [Power BI Dashboard](screenshots/dashboard.png)
+
+---
+
+## 📚 Key Learning Outcomes
 
 This project demonstrates hands-on experience with:
 
-* Microsoft Fabric
-* OneLake
-* Fabric Data Factory
-* Data ingestion
-* Pipeline orchestration
-* Lakehouse architecture
-* Medallion Architecture
-* Bronze/Silver/Gold layers
-* Delta Lake
-* PySpark
-* Spark SQL
-* Data transformation
-* Data warehouse design
-* Dimensional modeling
-* Fact and dimension tables
-* Star schema
-* Surrogate keys
-* Power BI Semantic Models
-* DAX
-* Data visualization
-* Business intelligence
+- Microsoft Fabric
+- OneLake
+- Fabric Data Factory
+- Data ingestion
+- Pipeline orchestration
+- Lakehouse architecture
+- Medallion Architecture
+- Bronze/Silver/Gold layers
+- Delta Lake
+- PySpark
+- Spark SQL
+- Data transformation
+- Data warehouse design
+- Dimensional modeling
+- Fact and dimension tables
+- Star schema
+- Surrogate keys
+- Power BI Semantic Models
+- DAX
+- Data visualization
+- Business intelligence
+- Microsoft Fabric Apps
 
 ---
 
-# 🔮 Future Improvements
+## 🔮 Future Improvements
 
 Potential improvements include:
 
-* Incremental data loading
-* Pipeline parameterization
-* Automated data quality checks
-* Slowly Changing Dimensions
-* Power BI Row-Level Security
-* Pipeline monitoring and alerting
-* Additional business KPIs
-* Semantic model optimization
-* CI/CD for Fabric artifacts
-* Automated testing for transformations
+- Incremental data loading
+- Pipeline parameterization
+- Automated data quality checks
+- Slowly Changing Dimensions
+- Power BI Row-Level Security
+- Pipeline monitoring and alerting
+- Additional business KPIs
+- Semantic model optimization
+- CI/CD for Fabric artifacts
+- Automated testing for transformations
 
 ---
 
-# 👨‍💻 Conclusion
+## 👨‍💻 Conclusion
 
 This project demonstrates an end-to-end modern data analytics solution using Microsoft Fabric.
 
-Raw sales data is ingested through a Fabric Data Factory pipeline, processed through a Medallion Architecture using PySpark and Delta Lake, loaded into a Fabric Warehouse using dimensional modeling, and consumed through a Power BI Semantic Model and interactive dashboard.
+Raw sales data is ingested through a Fabric Data Factory pipeline, processed through a Medallion Architecture using PySpark and Delta Lake, loaded into a Fabric Warehouse using dimensional modeling, and consumed through a Power BI Semantic Model, interactive report, and Microsoft Fabric Sales Report App.
 
 The project combines:
 
@@ -723,7 +764,8 @@ Microsoft Fabric
         ├── Semantic Model
         ├── Star Schema
         ├── DAX
-        └── Dashboard
+        ├── Report
+        └── Fabric App
 ```
 
 ---
