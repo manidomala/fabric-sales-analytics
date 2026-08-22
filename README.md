@@ -645,32 +645,6 @@ fabric-sales-analytics/
     └── README.md
 ```
 
----
-
-# 📸 Project Screenshots
-
-## Fabric Data Pipeline
-
-![Pipeline](screenshots/pipeline.png)
-
-## Fabric Lakehouse
-
-![Lakehouse](screenshots/lakehouse.png)
-
-## Fabric Warehouse
-
-![Warehouse](screenshots/warehouse.png)
-
-## Power BI Star Schema
-
-![Star Schema](screenshots/star-schema.png)
-
-## Power BI Dashboard
-
-![Dashboard](screenshots/dashboard.png)
-
----
-
 # 📚 Key Learning Outcomes
 
 This project demonstrates hands-on experience with:
