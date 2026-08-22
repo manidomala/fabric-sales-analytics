@@ -132,6 +132,30 @@ The dataset contains:
 
 > The raw CSV file is not included in this public repository.
 
+
+## 🎯 Project Scope
+
+This project primarily focuses on learning and demonstrating the capabilities of **Microsoft Fabric through an end-to-end data analytics solution**, rather than benchmarking large-scale data processing performance.
+
+The dataset was intentionally kept manageable so the focus could remain on understanding and implementing the complete Fabric ecosystem, including:
+
+- Fabric Data Factory for data ingestion and orchestration
+- OneLake and Lakehouse for data storage
+- Bronze, Silver, and Gold medallion architecture
+- PySpark-based data transformations
+- Delta tables
+- Fabric Warehouse
+- Dimensional modeling and star schema
+- Semantic Model
+- DAX measures
+- Power BI reporting
+- Microsoft Fabric App
+
+The current dataset size should therefore be viewed in the context of the project's learning objective. While the current implementation does not benchmark the platform with millions of records, the architecture is designed with scalability in mind.
+
+A natural next step would be to introduce a larger dataset and evaluate areas such as **incremental loading, partitioning, performance optimization, data-quality monitoring, and pipeline scalability**.
+
+
 ---
 
 ## 🏭 Data Engineering
