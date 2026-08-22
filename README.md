@@ -673,7 +673,7 @@ All project screenshots are available in the repository.
 
 ### View All Screenshots
 
-[📁 **Open Screenshots Folder**](screenshots/)
+[📁 **Open Screenshots Folder**](Screenshots/)
 
 ### Individual Screenshots
 
