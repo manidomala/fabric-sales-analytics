@@ -1,6 +1,6 @@
 # Microsoft Fabric Sales Analytics
 
-An end-to-end **sales data engineering and analytics project** built using **Microsoft Fabric**, implementing Medallion Architecture with PySpark and Delta Lake, loading curated data into a Fabric Warehouse, and delivering business insights through a Power BI Semantic Model, interactive dashboard, and Microsoft Fabric Sales Report App.
+An end-to-end **sales data engineering and analytics project** built using **Microsoft Fabric**, implementing Medallion Architecture with PySpark and Delta Lake, loading curated data into a Fabric Warehouse, and delivering business insights through a Power BI Semantic Model, Power BI Desktop report, and Microsoft Fabric Sales Report App.
 
 ---
 
@@ -594,8 +594,6 @@ The app provides an interactive view of the Sales Analytics dashboard and allows
 
 [📊 **Open Sales Report App**](https://app.fabric.microsoft.com/Redirect?action=OpenApp&appId=cc4ca843-6ece-4e50-918a-eba28323fe81&ctid=3c71cbab-b5ed-4f3b-ac0d-95509d6c0e93&experience=fabric-developer)
 
-> Replace `YOUR_FABRIC_APP_URL` with the shareable URL of your Microsoft Fabric Sales Report App.
-
 > Access to the app requires appropriate Microsoft Fabric / Power BI permissions.
 
 ---
@@ -621,22 +619,27 @@ The app provides an interactive view of the Sales Analytics dashboard and allows
            └──────────┼──────────┘
                       │
                       ▼
-             Fabric Warehouse
+               Fabric Warehouse
                       │
                       ▼
                  Star Schema
                       │
                       ▼
-            Power BI Semantic Model
+            Fabric Semantic Model
+                      │
+                      │ Live Connection
+                      ▼
+              Power BI Desktop
                       │
                       ▼
-                    DAX
+                Build Report
                       │
                       ▼
-              Power BI Report
+          Publish Microsoft Fabric workspace
                       │
                       ▼
-               Sales Report App
+             Microsoft Fabric App
+                "Sales Report"
 ```
 
 ---
@@ -654,7 +657,7 @@ fabric-sales-analytics/
 ├── powerbi/
 │   └── powerbi-documentation.md
 │
-├── screenshots/
+├── Screenshots/
 │   ├── pipeline.png
 │   ├── lakehouse.png
 │   ├── warehouse.png
@@ -735,7 +738,7 @@ Potential improvements include:
 
 This project demonstrates an end-to-end modern data analytics solution using Microsoft Fabric.
 
-Raw sales data is ingested through a Fabric Data Factory pipeline, processed through a Medallion Architecture using PySpark and Delta Lake, loaded into a Fabric Warehouse using dimensional modeling, and consumed through a Power BI Semantic Model, interactive report, and Microsoft Fabric Sales Report App.
+Raw sales data is ingested through a Fabric Data Factory pipeline, processed through a Medallion Architecture using PySpark and Delta Lake, loaded into a Fabric Warehouse using dimensional modeling, and consumed through a Power BI Semantic Model, Power BI Desktop report, and Microsoft Fabric Sales Report App.
 
 The project combines:
 
@@ -756,16 +759,19 @@ Microsoft Fabric
 ├── Delta Lake
 ├── PySpark
 ├── Spark SQL
-└── Warehouse
+├── Warehouse
+└── Semantic Model
         │
+        │ Live Connection
         ▼
-    Power BI
+   Power BI Desktop
         │
-        ├── Semantic Model
-        ├── Star Schema
-        ├── DAX
-        ├── Report
-        └── Fabric App
+        └── Report
+                │
+                ▼
+        Microsoft Fabric
+                │
+                └── Sales Report App
 ```
 
 ---
