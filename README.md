@@ -101,7 +101,7 @@ The project starts with a sales transaction CSV dataset.
 
 The dataset contains:
 
-- **1M+ records**
+- **1525 records**
 - **8 columns**
 
 ### Dataset Schema
